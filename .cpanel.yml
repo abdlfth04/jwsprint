@@ -1,0 +1,24 @@
+---
+deployment:
+  tasks:
+    - export REPOPATH=/home/jwsprint/repositories/jwsprint
+    - export DEPLOYPATH=/home/jwsprint/public_html
+
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/uploads
+
+    - /bin/cp -R $REPOPATH/app $DEPLOYPATH
+    - /bin/cp -R $REPOPATH/pages $DEPLOYPATH
+    - /bin/cp -R $REPOPATH/public $DEPLOYPATH
+
+    - /bin/cp $REPOPATH/index.php $DEPLOYPATH
+    - /bin/cp $REPOPATH/logout.php $DEPLOYPATH
+    - /bin/cp $REPOPATH/.htaccess $DEPLOYPATH
+    - /bin/cp $REPOPATH/manifest.webmanifest $DEPLOYPATH
+    - /bin/cp $REPOPATH/offline.html $DEPLOYPATH
+    - /bin/cp $REPOPATH/sw.js $DEPLOYPATH
+    - /bin/cp $REPOPATH/php.ini $DEPLOYPATH
+
+    # Tambahkan file root lain kalau memang dipakai live:
+    # - /bin/cp $REPOPATH/alaymaneh.php $DEPLOYPATH
+    # - /bin/cp $REPOPATH/underconstructions.html $DEPLOYPATH
