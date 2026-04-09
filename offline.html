@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - JWS</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f3f5f7;
+            --card: #ffffff;
+            --text: #101828;
+            --muted: #667085;
+            --border: #d7dee7;
+            --primary: #0f766e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 28%),
+                linear-gradient(180deg, #edf7f5 0%, var(--bg) 24%, var(--bg) 100%);
+            color: var(--text);
+        }
+
+        .offline-card {
+            width: min(520px, 100%);
+            padding: 32px;
+            border-radius: 28px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            text-align: center;
+        }
+
+        .offline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(15, 118, 110, 0.1);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 18px 0 10px;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .offline-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .offline-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .offline-btn.primary {
+            border-color: transparent;
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-card">
+        <span class="offline-badge">Offline Mode</span>
+        <h1>Koneksi sedang tidak tersedia.</h1>
+        <p>Beberapa data operasional memerlukan internet atau jaringan lokal kantor. Saat koneksi kembali normal, Anda bisa memuat ulang halaman untuk melanjutkan pekerjaan.</p>
+        <div class="offline-actions">
+            <button class="offline-btn primary" onclick="window.location.reload()">Coba lagi</button>
+            <a class="offline-btn" href="./index.php">Kembali ke beranda</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,704 @@
+/**
+ * MOBILE & RESPONSIVE OPTIMIZATION
+ * Comprehensive mobile-first responsive improvements untuk UI/UX konsisten
+ * Breakpoints: 480px (small phones), 640px (larger phones), 768px (tablets), 1024px (laptop), 1280px+ (desktop)
+ */
+
+/* ==================== SMALL PHONES (< 480px) ==================== */
+@media (max-width: 479px) {
+    :root {
+        --sidebar-width: 100%;
+    }
+
+    body {
+        font-size: 12.75px;
+    }
+
+    /* Sidebar optimization untuk small phones */
+    .sidebar {
+        top: 8px !important;
+        left: 8px !important;
+        right: 8px !important;
+        bottom: 8px !important;
+        width: calc(100vw - 16px) !important;
+        padding: 9px !important;
+        border-radius: 18px;
+    }
+
+    .sidebar-brand {
+        padding: 8px 6px 10px;
+        margin-bottom: 2px;
+    }
+
+    .sidebar-brand img {
+        width: 116px;
+        height: auto;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+    }
+
+    .user-name {
+        font-size: 0.82rem;
+    }
+
+    .user-role-badge {
+        font-size: 0.64rem;
+        padding: 3px 6px;
+    }
+
+    .nav-item {
+        padding: 9px 9px;
+        border-radius: 12px;
+        gap: 8px;
+    }
+
+    .nav-item i {
+        font-size: 0.82rem;
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-item span {
+        font-size: 0.74rem;
+    }
+
+    /* Topbar optimization untuk small phones */
+    .topbar {
+        min-height: 64px;
+        margin: 8px 8px 0;
+        padding: 11px 12px;
+        flex-wrap: wrap;
+    }
+
+    .topbar-brand img {
+        width: 86px;
+        height: auto;
+    }
+
+    .topbar-title {
+        font-size: 0.82rem;
+    }
+
+    .btn-toggle-sidebar,
+    .btn-home-mobile,
+    .topbar-action,
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 0.82rem;
+        border-radius: 10px;
+    }
+
+    /* Content area */
+    .content-area {
+        padding: 14px 8px 24px;
+    }
+
+    .card {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+    }
+
+    .card-header {
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+
+    .card-title {
+        font-size: 0.84rem;
+    }
+
+    /* Typography */
+    .page-title {
+        font-size: clamp(0.98rem, 2.4vw, 1.08rem);
+    }
+
+    /* Responsive grids */
+    .metric-strip,
+    .stats-grid,
+    .shortcut-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Better form spacing */
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-size: 0.82rem;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .form-control,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 16px; /* Prevent zoom on focus */
+        border-radius: 10px;
+        border: 1px solid var(--border);
+    }
+
+    /* Buttons */
+    .btn,
+    button {
+        padding: 12px 14px;
+        font-size: 0.88rem;
+        border-radius: 10px;
+    }
+
+    .page-actions .btn,
+    .admin-toolbar-actions .btn,
+    .admin-inline-actions .btn,
+    .mobile-data-actions .btn,
+    .mobile-data-actions form,
+    .mobile-data-actions form .btn,
+    .cart-footer-actions .btn,
+    .customer-detail-actions .btn {
+        width: 100%;
+    }
+
+    /* Tables - keep native layout and scroll inside wrapper */
+    table {
+        display: table;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-responsive table {
+        width: max-content;
+        min-width: 100%;
+    }
+
+    /* Reduce animation on small devices for performance */
+}
+
+/* ==================== STANDARD PHONES (480px - 767px) ==================== */
+@media (min-width: 480px) and (max-width: 767px) {
+    :root {
+        --topbar-h: 72px;
+    }
+
+    body {
+        font-size: 13.5px;
+    }
+
+    .sidebar {
+        width: calc(100vw - 32px);
+        top: 12px;
+        left: 16px;
+        right: 16px;
+        right: auto;
+        bottom: 12px;
+    }
+
+    .sidebar-brand img {
+        width: 124px;
+    }
+
+    .user-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+    }
+
+    .nav-item {
+        padding: 9px 10px;
+        gap: 8px;
+    }
+
+    .nav-item span {
+        font-size: 0.76rem;
+    }
+
+    .topbar {
+        min-height: 72px;
+        margin: 12px 16px 0;
+        padding: 12px 14px;
+    }
+
+    .topbar-brand img {
+        width: 94px;
+    }
+
+    .topbar-title {
+        font-size: 0.86rem;
+    }
+
+    .content-area {
+        padding: 16px 12px 28px;
+    }
+
+    .card {
+        padding: 14px 16px;
+        border-radius: 16px;
+    }
+
+    /* Two column grid for phones */
+    .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .shortcut-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-actions .btn {
+        font-size: 0.82rem;
+        padding: 8px 12px;
+    }
+}
+
+/* ==================== TABLETS (768px - 1023px) ==================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --sidebar-width: 260px;
+        --topbar-h: 72px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .main-wrapper {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        width: min(320px, calc(100vw - 32px));
+        top: 14px;
+        left: 16px;
+        right: auto;
+        bottom: 14px;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .sidebar-brand img {
+        width: 140px;
+    }
+
+    .nav-item {
+        padding: 9px 10px;
+        gap: 9px;
+    }
+
+    .nav-item span {
+        font-size: 0.78rem;
+    }
+
+    .topbar {
+        min-height: 72px;
+        margin: 14px 14px 0;
+        padding: 12px 14px;
+        height: auto;
+    }
+
+    .topbar-brand img {
+        width: 102px;
+    }
+
+    .topbar-title {
+        font-size: 0.88rem;
+    }
+
+    .content-area {
+        padding: 20px 14px 28px;
+    }
+
+    .card {
+        padding: 18px 20px;
+        border-radius: 18px;
+    }
+
+    /* Better grid for tablets */
+    .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .shortcut-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==================== LAPTOPS (1024px - 1279px) ==================== */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    :root {
+        --sidebar-width: 280px;
+    }
+
+    .main-wrapper {
+        margin-left: calc(var(--sidebar-width) + 32px);
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        border-radius: 22px;
+    }
+
+    .sidebar-brand img {
+        width: 145px;
+    }
+
+    .content-area {
+        padding: 24px 16px 32px 0;
+        max-width: 90vw;
+    }
+
+    .metric-strip {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .shortcut-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ==================== DESKTOPS (1280px+) ==================== */
+@media (min-width: 1280px) {
+    :root {
+        --sidebar-width: 286px;
+    }
+
+    .main-wrapper {
+        margin-left: calc(var(--sidebar-width) + 32px);
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+    }
+
+    .content-area {
+        padding: 24px 16px 32px 0;
+    }
+
+    .metric-strip {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .shortcut-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ==================== EXTRA LARGE SCREENS (1536px+) ==================== */
+@media (min-width: 1536px) {
+    :root {
+        --sidebar-width: 300px;
+    }
+
+    .sidebar-brand img {
+        width: 160px;
+    }
+
+    .content-area {
+        padding: 28px 20px 36px 0;
+    }
+
+    .card {
+        padding: 28px;
+    }
+
+    .metric-strip {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .shortcut-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* ==================== LANDSCAPE MODE OPTIMIZATION ==================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    :root {
+        --topbar-h: 52px;
+    }
+
+    body {
+        font-size: 12.5px;
+    }
+
+    .sidebar {
+        top: 6px;
+        bottom: 6px;
+        padding: 8px;
+    }
+
+    .sidebar-brand {
+        padding: 6px 4px 8px;
+    }
+
+    .sidebar-brand img {
+        width: 100px;
+    }
+
+    .sidebar-user {
+        padding: 8px 4px 10px;
+        gap: 8px;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .user-name {
+        font-size: 0.78rem;
+    }
+
+    .user-role-badge {
+        font-size: 0.62rem;
+        padding: 2px 4px;
+    }
+
+    .nav-item {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .nav-item span {
+        font-size: 0.74rem;
+    }
+
+    .topbar {
+        min-height: 52px;
+        padding: 10px 14px;
+        margin-top: 6px;
+        margin-right: 6px;
+    }
+
+    .topbar-brand img {
+        width: 80px;
+    }
+
+    .topbar-title {
+        font-size: 0.85rem;
+    }
+
+    .btn-toggle-sidebar,
+    .btn-home-mobile,
+    .topbar-action,
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .content-area {
+        padding: 12px 8px 16px;
+    }
+
+    .card {
+        padding: 12px 14px;
+        margin-bottom: 12px;
+    }
+
+    h1 { font-size: 1rem; }
+    h2 { font-size: 0.92rem; }
+    h3 { font-size: 0.85rem; }
+    h4 { font-size: 0.78rem; }
+}
+
+/* ==================== TOUCH DEVICE OPTIMIZATION ==================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    button,
+    a[role="button"],
+    .btn,
+    .nav-item,
+    .topbar-action {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Increase gap between interactive elements */
+    .nav-item {
+        gap: 12px;
+    }
+
+    /* Remove hover states yang tidak berguna */
+    .nav-item:hover {
+        transform: none;
+    }
+
+    .btn:hover,
+    .topbar-action:hover {
+        transform: none;
+    }
+
+    /* Add active state untuk touch feedback */
+    .btn:active,
+    .nav-item:active,
+    .topbar-action:active {
+        opacity: 0.85;
+    }
+}
+
+/* ==================== KEYBOARD NAVIGATION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ==================== HIGH CONTRAST MODE ==================== */
+@media (prefers-contrast: more) {
+    .card {
+        border-width: 2px;
+    }
+
+    .nav-item {
+        border-width: 2px;
+    }
+
+    button,
+    .btn {
+        border-width: 2px;
+    }
+}
+
+/* ==================== DARK MODE PREFERENCE ==================== */
+@media (prefers-color-scheme: dark) {
+    body.theme-system {
+        color-scheme: dark;
+    }
+}
+
+/* ==================== PRINT OPTIMIZATION ==================== */
+@media print {
+    .sidebar,
+    .topbar,
+    .page-actions,
+    .btn-toggle-sidebar,
+    .btn-home-mobile,
+    button,
+    .nav-item {
+        display: none !important;
+    }
+
+    body,
+    .main-wrapper {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #999;
+    }
+
+    .content-area {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* ==================== INPUT & FORM RESPONSIVE ==================== */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Responsive form layout */
+.form-row {
+    display: grid;
+    gap: 12px;
+}
+
+@media (min-width: 640px) {
+    .form-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .form-row.full {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 14px;
+    }
+}
+
+/* Minimize unnecessary horizontal scroll */
+body {
+    overflow-x: hidden;
+}
+
+* {
+    max-width: 100%;
+}
+
+/* Prevent font size zooming on iOS input focus */
+input,
+select,
+textarea {
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    input,
+    select,
+    textarea {
+        font-size: 15px;
+    }
+}
+
+/* ==================== OPTIMIZE FOR FOLDABLE DEVICES ==================== */
+@media (screen-spanning: single-fold-vertical) {
+    .main-wrapper {
+        display: grid;
+        grid-template-columns: 1fr env(viewport-segment-width 0 0);
+    }
+}
+
+@media (screen-spanning: single-fold-horizontal) {
+    .main-wrapper {
+        display: grid;
+        grid-template-rows: 1fr env(viewport-segment-height 0 0);
+    }
+}

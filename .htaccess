@@ -1,0 +1,19 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^app/ - [F,L,NC]
+RewriteRule ^uploads/(?:cache|logs|absensi|karyawan)/ - [F,L,NC]
+RewriteRule ^(?:pages/)?error_log$ - [F,L,NC]
+RewriteRule ^(?:error_log|php\.ini|\.env(?:\..*)?|composer\.(?:json|lock)|package(?:-lock)?\.json|yarn\.lock|[^/]+\.md)$ - [F,L,NC]
+</IfModule>
+
+<FilesMatch "(?i)^(?:\.env(?:\..*)?|error_log|php\.ini|composer\.(?:json|lock)|package(?:-lock)?\.json|yarn\.lock|[^/]+\.md)$">
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order allow,deny
+Deny from all
+</IfModule>
+</FilesMatch>

@@ -1,0 +1,34 @@
+.selfie-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: zoom-in;
+    border: 2px solid var(--border);
+    margin-right: 4px;
+    transition: transform .15s;
+}
+
+.selfie-thumb:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .absensi-page .photo-strip {
+        gap: 6px;
+    }
+
+    .absensi-page .selfie-thumb {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border-width: 1px;
+    }
+}
+
+@media (max-width: 390px) {
+    .absensi-page .selfie-thumb {
+        width: 34px;
+        height: 34px;
+    }
+}

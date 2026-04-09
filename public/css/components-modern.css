@@ -1,0 +1,658 @@
+/**
+ * MODERN MINIMALIST COMPONENTS
+ * Clean, professional, dan modern design untuk semua UI elements
+ * Focus pada minimalism, whitespace, dan clarity
+ */
+
+/* ==================== BUTTONS - CLEAN & MODERN ==================== */
+.btn,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: clamp(0.78rem, .95vw, 0.88rem);
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: linear-gradient(135deg, var(--primary), #111827);
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    box-shadow: 0 14px 24px rgba(15, 23, 42, 0.08);
+}
+
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background: linear-gradient(135deg, var(--primary-hover), #111827);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.14);
+}
+
+.btn:active,
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+    transform: translateY(0);
+}
+
+/* Button Variants */
+.btn-secondary,
+.btn-outline {
+    background: rgba(255, 255, 255, 0.42);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    box-shadow: none;
+}
+
+body.dark .btn-secondary,
+body.dark .btn-outline {
+    background: var(--glass-soft);
+    color: var(--text);
+}
+
+.btn-secondary:hover,
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.64);
+    border-color: rgba(15, 118, 110, 0.18);
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+
+.btn-danger:hover {
+    background: #a01d0f;
+}
+
+.btn-success {
+    background: var(--success);
+}
+
+.btn-success:hover {
+    background: #0d6e2e;
+}
+
+.btn-info {
+    background: var(--info);
+}
+
+.btn-info:hover {
+    background: #0a47c4;
+}
+
+.btn-sm {
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 0.74rem;
+}
+
+.btn-lg {
+    min-height: 44px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* ==================== FORM ELEMENTS - CLEAN ==================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.48);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    transition: all var(--transition-fast);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(calc(var(--glass-blur) * 0.72));
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08), 0 10px 20px rgba(15, 23, 42, 0.06);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 96px;
+    line-height: 1.5;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: clamp(0.78rem, .95vw, 0.84rem);
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.form-group .form-text {
+    margin-top: 4px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--danger);
+}
+
+.form-group.error .form-text {
+    color: var(--danger);
+}
+
+/* ==================== TABLES - MODERN ==================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(0.78rem, .95vw, 0.86rem);
+}
+
+thead {
+    background: var(--surface-2);
+}
+
+th {
+    padding: 11px 12px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+    background: rgba(15, 118, 110, 0.02);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==================== BADGES & TAGS ==================== */
+.badge,
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.badge-primary {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+.badge-danger {
+    background: rgba(180, 35, 24, 0.12);
+    color: var(--danger);
+}
+
+.badge-success {
+    background: rgba(21, 128, 61, 0.12);
+    color: var(--success);
+}
+
+.badge-warning {
+    background: rgba(180, 67, 9, 0.12);
+    color: var(--warning);
+}
+
+.badge-info {
+    background: rgba(21, 94, 239, 0.12);
+    color: var(--info);
+}
+
+/* ==================== ALERTS ==================== */
+.alert {
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    border-left: 4px solid;
+    background: var(--glass-faint);
+    font-size: clamp(0.78rem, .95vw, 0.84rem);
+    line-height: 1.5;
+}
+
+.alert-primary {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.alert-danger {
+    background: rgba(180, 35, 24, 0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.alert-success {
+    background: rgba(21, 128, 61, 0.1);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.alert-warning {
+    background: rgba(180, 67, 9, 0.1);
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.alert-info {
+    background: rgba(21, 94, 239, 0.1);
+    border-color: var(--info);
+    color: var(--info);
+}
+
+.alert-close {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+}
+
+.alert-close:hover {
+    opacity: 1;
+}
+
+/* ==================== CARDS - MODERN & MINIMALIST ==================== */
+.card {
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.36), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 24px;
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(calc(var(--glass-blur) + 2px));
+    transition: all var(--transition-fast);
+}
+
+body.dark .card {
+    background: var(--glass-panel);
+}
+
+.card:hover {
+    border-color: rgba(15, 118, 110, 0.18);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.card-title {
+    margin: 0;
+    font-size: clamp(0.88rem, 1.05vw, 1rem);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card-body {
+    color: var(--text-2);
+}
+
+.card-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+/* ==================== MODALS & DROPDOWNS ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 8, 23, 0.46);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(6px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.34), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.44));
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 24px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s var(--transition);
+}
+
+body.dark .modal-content {
+    background: var(--glass-strong);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+    font-weight: 700;
+    font-size: 0.98rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0;
+}
+
+.modal-close:hover {
+    color: var(--text);
+}
+
+/* ==================== PAGINATION ==================== */
+.pagination {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.76rem;
+    transition: all var(--transition-fast);
+}
+
+.pagination a:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.pagination .active span {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+/* ==================== PROGRESS BARS ==================== */
+.progress {
+    width: 100%;
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: width 0.3s var(--transition);
+}
+
+.progress-bar.success {
+    background: var(--success);
+}
+
+.progress-bar.warning {
+    background: var(--warning);
+}
+
+.progress-bar.danger {
+    background: var(--danger);
+}
+
+/* ==================== SPINNERS & LOADERS ==================== */
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-sm {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.spinner-lg {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+}
+
+/* ==================== LISTS ==================== */
+.list-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: clamp(0.88rem, 1vw, 0.95rem);
+}
+
+.list-item-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* ==================== UTILITY SPACING ==================== */
+.gap-0 { gap: 0; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
+.gap-6 { gap: 24px; }
+
+/* ==================== UTILITY SIZING ==================== */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-w-fit { min-width: fit-content; }
+
+/* ==================== UTILITY TEXT ==================== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.82rem; }
+.text-base { font-size: 0.95rem; }
+.text-lg { font-size: 1.025rem; }
+
+.font-400 { font-weight: 400; }
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+
+.line-clamp-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ==================== DARK MODE ==================== */
+body.dark input[type="text"],
+body.dark input[type="email"],
+body.dark input[type="password"],
+body.dark input[type="number"],
+body.dark input[type="date"],
+body.dark input[type="time"],
+body.dark input[type="search"],
+body.dark select,
+body.dark textarea {
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+body.dark input:focus,
+body.dark select:focus,
+body.dark textarea:focus {
+    background: var(--glass-strong);
+}
+
+body.dark .table {
+    color: var(--text);
+}
+
+body.dark th {
+    background: rgba(19, 35, 54, 0.8);
+}
+
+body.dark tbody tr:hover {
+    background: rgba(15, 118, 110, 0.06);
+}
+
+body.dark .alert {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus visible untuk keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}

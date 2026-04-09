@@ -1,0 +1,347 @@
+/**
+ * RESPONSIVE DESIGN SYSTEM
+ * Mobile-first responsive architecture dengan breakpoints optimal
+ * untuk konsistensi UI/UX di semua perangkat
+ */
+
+:root {
+    /* ==================== TYPOGRAPHY SCALE ==================== */
+    /* Desktop */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 0.95rem;    /* 15px */
+    --text-lg: 1.025rem;     /* 16.4px */
+    --text-xl: 1.12rem;      /* 17.9px */
+    --text-2xl: 1.22rem;     /* 19.5px */
+    --text-3xl: 1.33rem;     /* 21.3px */
+    --text-4xl: 1.45rem;     /* 23.2px */
+    
+    /* MOBILE - Reduced sizes untuk readability tanpa scroll */
+    --mobile-xs: 0.7rem;     /* 11.2px */
+    --mobile-sm: 0.82rem;    /* 13px */
+    --mobile-base: 0.88rem;  /* 14px */
+    --mobile-lg: 0.95rem;    /* 15.2px */
+    --mobile-xl: 1.02rem;    /* 16.3px */
+    --mobile-2xl: 1.1rem;    /* 17.6px */
+    --mobile-3xl: 1.2rem;    /* 19.2px */
+
+    /* ==================== SPACING SCALE ==================== */
+    --sp-xs: 2px;
+    --sp-sm: 4px;
+    --sp-1: 8px;
+    --sp-2: 12px;
+    --sp-3: 16px;
+    --sp-4: 20px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 40px;
+    --sp-8: 48px;
+
+    /* ==================== BREAKPOINTS ==================== */
+    /* Mobile First Approach */
+    --bp-sm: 480px;    /* Small phones */
+    --bp-md: 768px;    /* Tablets */
+    --bp-lg: 1024px;   /* Laptops */
+    --bp-xl: 1280px;   /* Desktops */
+    --bp-2xl: 1536px;  /* Large screens */
+
+    /* ==================== RESPONSIVE DEFAULTS ==================== */
+    /* Akan di-override oleh media queries */
+    --current-text-small: var(--mobile-sm);
+    --current-text-base: var(--mobile-base);
+    --current-text-lg: var(--mobile-lg);
+    --current-text-xl: var(--mobile-xl);
+    --current-text-2xl: var(--mobile-2xl);
+    --current-text-3xl: var(--mobile-3xl);
+    
+    --current-padding: var(--sp-3);
+    --current-margin: var(--sp-3);
+    --sidebar-ratio: 1;        /* 0 = hidden, 1 = shown */
+}
+
+/* ==================== TABLET & UP ==================== */
+@media (min-width: 768px) {
+    :root {
+        --current-text-small: var(--text-sm);
+        --current-text-base: var(--text-base);
+        --current-text-lg: var(--text-lg);
+        --current-text-xl: var(--text-xl);
+        --current-text-2xl: var(--text-2xl);
+        --current-text-3xl: var(--text-3xl);
+        
+        --current-padding: var(--sp-4);
+        --current-margin: var(--sp-4);
+    }
+}
+
+/* ==================== DESKTOP & UP ==================== */
+@media (min-width: 1024px) {
+    :root {
+        --sidebar-ratio: 1;
+    }
+}
+
+/* ==================== TYPOGRAPHY RESET ==================== */
+html {
+    /* Prevent zoom on input focus di iOS */
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+h1 { font-size: clamp(1.33rem, 2vw, 1.45rem); font-weight: 800; }
+h2 { font-size: clamp(1.22rem, 1.8vw, 1.33rem); font-weight: 800; }
+h3 { font-size: clamp(1.12rem, 1.6vw, 1.22rem); font-weight: 700; }
+h4 { font-size: clamp(1.025rem, 1.4vw, 1.12rem); font-weight: 700; }
+h5 { font-size: var(--current-text-lg); font-weight: 700; }
+h6 { font-size: var(--current-text-base); font-weight: 600; }
+
+p {
+    margin: 0;
+    font-size: var(--current-text-base);
+    line-height: 1.6;
+    color: var(--text-2);
+}
+
+small { font-size: var(--current-text-small); }
+.text-small { font-size: var(--current-text-small); }
+.text-base { font-size: var(--current-text-base); }
+.text-lg { font-size: var(--current-text-lg); }
+
+/* ==================== RESPONSIVE CONTAINERS ==================== */
+.container {
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 var(--sp-3);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--sp-5);
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 var(--sp-6);
+    }
+}
+
+/* ==================== RESPONSIVE CARDS ==================== */
+.card {
+    padding: clamp(16px, 4vw, 24px);
+    border-radius: clamp(12px, 2vw, 20px);
+}
+
+/* ==================== RESPONSIVE GRIDS ==================== */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+}
+
+@media (min-width: 640px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .grid-2 { gap: var(--sp-5); }
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+}
+
+@media (min-width: 768px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--sp-3);
+}
+
+@media (min-width: 1024px) {
+    .grid-4 { gap: var(--sp-5); }
+}
+
+/* ==================== RESPONSIVE PADDING ==================== */
+.p-responsive { padding: clamp(12px, 3vw, 24px); }
+.px-responsive { padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); }
+.py-responsive { padding-top: clamp(12px, 3vw, 24px); padding-bottom: clamp(12px, 3vw, 24px); }
+
+/* ==================== RESPONSIVE MARGIN ==================== */
+.m-responsive { margin: clamp(12px, 3vw, 24px); }
+.mx-responsive { margin-left: clamp(12px, 3vw, 24px); margin-right: clamp(12px, 3vw, 24px); }
+.my-responsive { margin-top: clamp(12px, 3vw, 24px); margin-bottom: clamp(12px, 3vw, 24px); }
+
+/* ==================== RESPONSIVE DISPLAY ==================== */
+.show-mobile { display: block; }
+.hide-mobile { display: none; }
+
+@media (min-width: 768px) {
+    .show-mobile { display: none; }
+    .hide-mobile { display: block; }
+}
+
+.show-tablet { display: none; }
+@media (min-width: 768px) and (max-width: 1023px) {
+    .show-tablet { display: block; }
+}
+
+.show-desktop { display: none; }
+@media (min-width: 1024px) {
+    .show-desktop { display: block; }
+}
+
+/* ==================== TOUCH-FRIENDLY SIZING ==================== */
+.btn,
+button,
+.nav-item,
+a.button {
+    /* Minimum 44px untuk touch target (iOS guideline) */
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .btn,
+    button,
+    .nav-item,
+    a.button {
+        min-height: 40px;
+    }
+}
+
+/* ==================== RESPONSIVE LAYOUT HELPERS ==================== */
+.flex-column-mobile {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .flex-column-mobile {
+        flex-direction: row;
+    }
+}
+
+.stack-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+}
+
+@media (min-width: 768px) {
+    .stack-mobile {
+        gap: var(--sp-5);
+    }
+}
+
+/* ==================== RESPONSIVE FONT SIZES FOR INPUTS ==================== */
+input,
+select,
+textarea {
+    /* Prevent zoom pada iOS saat input fokus */
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    input,
+    select,
+    textarea {
+        font-size: 15px;
+    }
+}
+
+/* ==================== PRINT RESPONSIVENESS ==================== */
+@media print {
+    .no-print,
+    .sidebar,
+    .topbar,
+    .page-actions,
+    button,
+    .btn {
+        display: none !important;
+    }
+    
+    body,
+    .main-wrapper {
+        margin: 0;
+        background: white;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==================== LANDSCAPE MODE FIX ==================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        top: 8px;
+        bottom: 8px;
+    }
+    
+    .main-wrapper {
+        margin-top: 8px;
+    }
+    
+    .topbar {
+        min-height: 56px;
+    }
+}
+
+/* ==================== HIGH DPI & RETINA ==================== */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    /* Optimize untuk high-DPI displays */
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+    
+    .border,
+    border {
+        border-width: 0.5px;
+    }
+}
+
+/* ==================== DARK MODE RESPONSIVE ==================== */
+@media (prefers-color-scheme: dark) {
+    body.theme-system {
+        color-scheme: dark;
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "JWS cPanel SSH",
+  "host": "YOUR_SSH_HOST",
+  "protocol": "sftp",
+  "port": 22,
+  "username": "jwsprint",
+  "password": "YOUR_CPANEL_PASSWORD",
+  "remotePath": "/home/jwsprint/public_html",
+  "uploadOnSave": true,
+  "useTempFile": false,
+  "connectTimeout": 10000,
+  "ignore": [
+    ".vscode",
+    ".git",
+    ".gitignore",
+    ".env",
+    "uploads/cache/**"
+  ]
+}

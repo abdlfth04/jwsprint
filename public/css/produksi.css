@@ -1,0 +1,282 @@
+.progress-mini {
+    background: linear-gradient(90deg, rgba(228,228,231,.8), rgba(212,212,216,.9));
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-mini-bar {
+    background: linear-gradient(90deg, var(--success), #34d399);
+    height: 100%;
+    border-radius: 999px;
+    transition: width .3s ease;
+}
+
+.progress-caption {
+    color: var(--text-muted);
+    font-size: .78rem;
+}
+
+.tahapan-cell {
+    padding: 0 !important;
+    background: linear-gradient(180deg, rgba(244,244,245,.6), rgba(255,255,255,.96));
+}
+
+.tahapan-wrapper {
+    padding: 14px 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.tahapan-header-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.tahapan-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tahapan-header-meta,
+.tahapan-file-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+}
+
+.tahapan-badge-row,
+.tahapan-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tahapan-action-row form {
+    margin: 0;
+}
+
+.tahapan-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.tahapan-summary-card {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-2);
+}
+
+.tahapan-progress-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.tahapan-stage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tahapan-item {
+    border-radius: 10px !important;
+}
+
+.tahapan-item-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tahapan-item-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.tahapan-operator-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.tahapan-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tahapan-file-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mobile-tahapan-panel {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(244,244,245,.65), rgba(255,255,255,.98));
+}
+
+.mobile-produksi-card .progress-mini {
+    height: 8px;
+}
+
+@media (max-width: 768px) {
+    .produksi-page .filter-pill {
+        min-height: 34px;
+        padding: 6px 10px;
+        font-size: .72rem;
+    }
+
+    .produksi-page .mobile-data-top {
+        align-items: flex-start;
+    }
+
+    .produksi-page .mobile-data-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .produksi-page .mobile-data-actions .btn,
+    .produksi-page .mobile-data-actions form,
+    .produksi-page .mobile-data-actions form .btn {
+        width: auto;
+        min-width: 116px;
+    }
+
+    .produksi-page .mobile-produksi-card .progress-mini {
+        margin-top: 12px;
+    }
+
+    .mobile-tahapan-panel {
+        padding: 12px;
+    }
+
+    .tahapan-wrapper {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .tahapan-header-stack {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .tahapan-header-meta,
+    .tahapan-file-meta {
+        gap: 6px 10px;
+        font-size: .72rem !important;
+    }
+
+    .tahapan-action-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .tahapan-action-row > *,
+    .tahapan-action-row .btn,
+    .tahapan-action-row form .btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .tahapan-item {
+        padding: 10px !important;
+    }
+
+    .tahapan-item-top {
+        gap: 8px;
+    }
+
+    .tahapan-file-link.btn {
+        min-height: 36px;
+        padding: 8px 10px !important;
+    }
+
+    .tahapan-workflow-note,
+    .tahapan-footer-note,
+    .tahapan-lock-note {
+        font-size: .72rem !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .produksi-page .mobile-data-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tahapan-header-top,
+    .tahapan-progress-head,
+    .tahapan-item-top {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .tahapan-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .tahapan-summary-card:only-child,
+    .tahapan-summary-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    .tahapan-operator-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .tahapan-operator-row .select-operator {
+        width: 100%;
+        min-width: 0 !important;
+    }
+
+    .tahapan-file-link.btn {
+        width: 100%;
+        justify-content: center;
+        align-self: stretch !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .produksi-page .mobile-data-grid,
+    .produksi-page .mobile-data-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .produksi-page .mobile-data-actions {
+        display: grid;
+    }
+
+    .produksi-page .mobile-data-actions .btn,
+    .produksi-page .mobile-data-actions form,
+    .produksi-page .mobile-data-actions form .btn {
+        width: 100%;
+    }
+
+    .tahapan-summary-grid,
+    .tahapan-action-row {
+        grid-template-columns: 1fr;
+    }
+}

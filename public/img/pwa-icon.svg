@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="132" fill="url(#bg)"/>
+  <rect x="42" y="42" width="428" height="428" rx="108" fill="#FFFFFF" fill-opacity=".06" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M140 168h88c64 0 100 32 100 88s-36 88-100 88h-44v52h-44V168Zm44 40v96h40c38 0 58-15 58-48 0-32-20-48-58-48h-40Z" fill="#F8FAFC"/>
+  <path d="M314 336c0-18 14-31 34-31s34 13 34 31-14 31-34 31-34-13-34-31Z" fill="#7DD3FC"/>
+  <text x="256" y="438" text-anchor="middle" fill="#D7F9F2" font-family="Plus Jakarta Sans, Segoe UI, sans-serif" font-size="40" font-weight="700" letter-spacing="10">JWS</text>
+  <defs>
+    <linearGradient id="bg" x1="74" y1="56" x2="454" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset=".55" stop-color="#123A4D"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+</svg>

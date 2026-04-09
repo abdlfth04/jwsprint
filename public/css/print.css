@@ -1,0 +1,22 @@
+/* ============================================================
+   JWS — Print CSS
+   ============================================================ */
+@media print {
+    .sidebar,
+    .sidebar-overlay,
+    .topbar,
+    .modal-footer,
+    .btn,
+    .modal-close,
+    .no-print,
+    .search-bar,
+    .card-header .btn,
+    .card-header .d-flex { display: none !important; }
+
+    .main-wrapper { margin-left: 0 !important; }
+    .content-area { padding: 0 !important; }
+    body { background: #fff !important; }
+    .card { box-shadow: none !important; border: none !important; }
+    .modal-overlay { position: static !important; background: none !important; }
+    .modal-box { box-shadow: none !important; max-width: 100% !important; border: none !important; }
+}
