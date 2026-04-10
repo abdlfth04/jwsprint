@@ -604,6 +604,34 @@ $finPrinting  = ($r = $conn->query("SELECT * FROM finishing_printing ORDER BY na
 $finApparel   = ($r = $conn->query("SELECT * FROM finishing_apparel ORDER BY nama"))  ? $r->fetch_all(MYSQLI_ASSOC) : [];
 $bahanApparel = ($r = $conn->query("SELECT * FROM bahan_apparel ORDER BY nama"))      ? $r->fetch_all(MYSQLI_ASSOC) : [];
 
+if (!function_exists('posRenderFinishingOptions')) {
+    function posRenderFinishingOptions(array $rows, bool $perPcs = false): string
+    {
+        $options = ['<option value="">-- Tanpa Finishing --</option>'];
+
+        foreach ($rows as $row) {
+            $biaya = (float) ($row['biaya'] ?? 0);
+            $label = htmlspecialchars((string) ($row['nama'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $suffix = $perPcs ? '/pcs' : '';
+
+            $options[] = sprintf(
+                '<option value="%d" data-biaya="%s" data-nama="%s">%s (+Rp %s%s)</option>',
+                (int) ($row['id'] ?? 0),
+                htmlspecialchars((string) $biaya, ENT_QUOTES, 'UTF-8'),
+                $label,
+                $label,
+                number_format($biaya, 0, ',', '.'),
+                $suffix
+            );
+        }
+
+        return implode("\n", $options);
+    }
+}
+
+$printingFinishingOptionsHtml = posRenderFinishingOptions($finPrinting);
+$apparelFinishingOptionsHtml = posRenderFinishingOptions($finApparel, true);
+
 // Setting pajak, defensive jika kolom belum ada
 $pajakAktif  = 0; $pajakPersen = 11; $pajakNama = 'PPN';
 $resSetting  = $conn->query("SELECT * FROM setting WHERE id=1");
@@ -1108,16 +1136,28 @@ require_once dirname(__DIR__) . '/layouts/header.php';
 
             <div class="pos-modal-section">
                 <div class="pos-modal-section-title"><i class="fas fa-sliders-h"></i> Spesifikasi Tambahan</div>
-                <div class="form-group">
-                    <label class="form-label">Finishing</label>
-                    <select id="printingFinishing" class="form-control" onchange="hitungPrintingSubtotal()">
-                        <option value="">-- Tanpa Finishing --</option>
-                        <?php foreach ($finPrinting as $f): ?>
-                            <option value="<?= $f['id'] ?>" data-biaya="<?= $f['biaya'] ?>" data-nama="<?= htmlspecialchars($f['nama'],ENT_QUOTES) ?>">
-                                <?= htmlspecialchars($f['nama']) ?> (+Rp <?= number_format($f['biaya'],0,',','.') ?>)
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                <div id="printingFinishingGroup">
+                    <div class="form-group">
+                        <label class="form-label">Finishing 1</label>
+                        <select id="printingFinishing1" class="form-control js-finishing-select" onchange="hitungPrintingSubtotal()">
+                            <?= $printingFinishingOptionsHtml ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Finishing 2 <span style="font-weight:400;color:var(--text-muted)">(opsional)</span></label>
+                        <select id="printingFinishing2" class="form-control js-finishing-select" onchange="hitungPrintingSubtotal()">
+                            <?= $printingFinishingOptionsHtml ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Finishing 3 <span style="font-weight:400;color:var(--text-muted)">(opsional)</span></label>
+                        <select id="printingFinishing3" class="form-control js-finishing-select" onchange="hitungPrintingSubtotal()">
+                            <?= $printingFinishingOptionsHtml ?>
+                        </select>
+                    </div>
+                    <div style="font-size:.78rem;color:var(--text-muted);margin-top:-6px;margin-bottom:12px;line-height:1.5">
+                        Pilih sampai 3 finishing. Biaya finishing akan dijumlahkan otomatis.
+                    </div>
                 </div>
                 <div class="form-group mb-0"><label class="form-label">Catatan</label><input type="text" id="printingCatatan" class="form-control" placeholder="Contoh: Cetak high-res, jangan dilipat..."></div>
             </div>
@@ -1156,15 +1196,21 @@ require_once dirname(__DIR__) . '/layouts/header.php';
                     </div>
                     <div class="form-group mb-0">
                         <label class="form-label">Metode Sablon/Bordir</label>
-                        <select id="apparelFinishing" class="form-control" onchange="hitungApparelSubtotal()">
-                            <option value="">-- Tanpa Finishing --</option>
-                            <?php foreach ($finApparel as $f): ?>
-                                <option value="<?= $f['id'] ?>" data-biaya="<?= $f['biaya'] ?>" data-nama="<?= htmlspecialchars($f['nama'],ENT_QUOTES) ?>">
-                                    <?= htmlspecialchars($f['nama']) ?> (+Rp <?= number_format($f['biaya'],0,',','.') ?>/pcs)
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div id="apparelFinishingGroup">
+                            <select id="apparelFinishing1" class="form-control js-finishing-select" onchange="hitungApparelSubtotal()">
+                                <?= $apparelFinishingOptionsHtml ?>
+                            </select>
+                            <select id="apparelFinishing2" class="form-control js-finishing-select" onchange="hitungApparelSubtotal()" style="margin-top:10px">
+                                <?= $apparelFinishingOptionsHtml ?>
+                            </select>
+                            <select id="apparelFinishing3" class="form-control js-finishing-select" onchange="hitungApparelSubtotal()" style="margin-top:10px">
+                                <?= $apparelFinishingOptionsHtml ?>
+                            </select>
+                        </div>
                     </div>
+                </div>
+                <div style="font-size:.78rem;color:var(--text-muted);margin-top:12px;line-height:1.5">
+                    Satu item apparel bisa memakai sampai 3 finishing, dan semua biaya finishing per pcs akan dijumlahkan.
                 </div>
             </div>
 

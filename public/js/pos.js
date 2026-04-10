@@ -939,7 +939,7 @@ function pilihProduk(element) {
     if (activeProduk.tipe === 'printing') {
         setTextContent('printingProdukNama', activeProduk.nama);
         setInputValue('printingSatuan', activeProduk.satuan || 'm2');
-        setInputValue('printingFinishing', '');
+        resetFinishingSelectGroup('printingFinishingGroup');
         setInputValue('printingCatatan', '');
         setInputValue('printingLebar', 1);
         setInputValue('printingTinggi', 1);
@@ -954,7 +954,7 @@ function pilihProduk(element) {
         input.value = '';
     });
     setInputValue('apparelBahan', '');
-    setInputValue('apparelFinishing', '');
+    resetFinishingSelectGroup('apparelFinishingGroup');
     setInputValue('apparelCatatan', '');
     hitungApparelSubtotal();
     openPosModal('modalApparel');
@@ -998,6 +998,53 @@ function toggleDimensi() {
     }
 }
 
+function resetFinishingSelectGroup(groupId) {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+
+    group.querySelectorAll('.js-finishing-select').forEach(select => {
+        select.value = '';
+    });
+}
+
+function getSelectedFinishings(groupId) {
+    const group = document.getElementById(groupId);
+    if (!group) return [];
+
+    const usedIds = new Set();
+
+    return Array.from(group.querySelectorAll('.js-finishing-select'))
+        .map(select => {
+            const option = select.selectedOptions?.[0];
+            const id = parseInt(select.value || 0, 10);
+            const nama = option?.dataset.nama || '';
+            const biaya = parseFloat(option?.dataset.biaya || 0);
+
+            if (!id || !nama || usedIds.has(id)) {
+                return null;
+            }
+
+            usedIds.add(id);
+
+            return {
+                id,
+                nama,
+                biaya: Number.isFinite(biaya) ? biaya : 0
+            };
+        })
+        .filter(Boolean);
+}
+
+function finishingNamesFromSelection(finishings) {
+    return finishings
+        .map(item => String(item?.nama || '').trim())
+        .filter(Boolean);
+}
+
+function finishingCostFromSelection(finishings) {
+    return finishings.reduce((sum, item) => sum + parseFloat(item?.biaya || 0), 0);
+}
+
 function hitungLuas() {
     const lebar = parseFloat(document.getElementById('printingLebar')?.value || 0);
     const tinggi = parseFloat(document.getElementById('printingTinggi')?.value || 0);
@@ -1021,13 +1068,18 @@ function hitungPrintingSubtotal() {
     const qty = satuan === 'm2' ? (lebar * tinggi) : qtyInput;
     const allowTier = satuan !== 'm2';
     const harga = getHargaProduk(activeProduk, qty, allowTier);
-    const finishingSelect = document.getElementById('printingFinishing');
-    const finishingOption = finishingSelect?.selectedOptions?.[0];
-    const finishingBiaya = parseFloat(finishingOption?.dataset.biaya || 0);
+    const selectedFinishings = getSelectedFinishings('printingFinishingGroup');
+    const finishingBiayaPerUnit = finishingCostFromSelection(selectedFinishings);
+    const finishingBiaya = satuan === 'm2'
+        ? finishingBiayaPerUnit
+        : finishingBiayaPerUnit * Math.max(qty, 0);
     const subtotal = (harga * qty) + finishingBiaya;
+    const finishingLabel = satuan !== 'm2' && finishingBiayaPerUnit > 0 && qty > 0
+        ? `${formatCurrency(finishingBiaya)} (${formatQuantity(qty)} x ${formatCurrency(finishingBiayaPerUnit)})`
+        : formatCurrency(finishingBiaya);
 
     document.getElementById('printingHargaSatuan').textContent = `${formatCurrency(harga)} / ${satuan}`;
-    document.getElementById('printingFinBiaya').textContent = formatCurrency(finishingBiaya);
+    document.getElementById('printingFinBiaya').textContent = finishingLabel;
     document.getElementById('printingSubtotal').textContent = formatCurrency(subtotal);
 }
 
@@ -1053,11 +1105,12 @@ function addPrintingToCart() {
         return;
     }
 
-    const finishingSelect = document.getElementById('printingFinishing');
-    const finishingOption = finishingSelect?.selectedOptions?.[0];
-    const finishingId = finishingSelect?.value || null;
-    const finishingNama = finishingOption?.dataset.nama || '';
-    const finishingBiaya = parseFloat(finishingOption?.dataset.biaya || 0);
+    const selectedFinishings = getSelectedFinishings('printingFinishingGroup');
+    const finishingNames = finishingNamesFromSelection(selectedFinishings);
+    const finishingBiayaPerUnit = finishingCostFromSelection(selectedFinishings);
+    const finishingBiaya = satuan === 'm2'
+        ? finishingBiayaPerUnit
+        : finishingBiayaPerUnit * qty;
     const harga = getHargaProduk(activeProduk, qty, satuan !== 'm2');
     const subtotal = (harga * qty) + finishingBiaya;
 
@@ -1071,9 +1124,10 @@ function addPrintingToCart() {
         lebar,
         tinggi,
         luas,
-        finishing_id: finishingId,
-        finishing_nama: finishingNama,
+        finishing_id: satuan === 'm2' && selectedFinishings.length === 1 ? selectedFinishings[0].id : null,
+        finishing_nama: finishingNames.join(', '),
         finishing_biaya: finishingBiaya,
+        finishing_list: finishingNames,
         bahan_id: null,
         bahan_nama: '',
         size_detail: '',
@@ -1108,9 +1162,8 @@ function hitungApparelSubtotal() {
     if (!activeProduk) return;
 
     const { totalQty } = readApparelSizes();
-    const finishingSelect = document.getElementById('apparelFinishing');
-    const finishingOption = finishingSelect?.selectedOptions?.[0];
-    const finishingBiaya = parseFloat(finishingOption?.dataset.biaya || 0);
+    const selectedFinishings = getSelectedFinishings('apparelFinishingGroup');
+    const finishingBiaya = finishingCostFromSelection(selectedFinishings);
     const harga = getHargaProduk(activeProduk, totalQty);
     const subtotal = (harga + finishingBiaya) * totalQty;
 
@@ -1129,11 +1182,11 @@ function addApparelToCart() {
         return;
     }
 
-    const finishingSelect = document.getElementById('apparelFinishing');
-    const finishingOption = finishingSelect?.selectedOptions?.[0];
+    const selectedFinishings = getSelectedFinishings('apparelFinishingGroup');
+    const finishingNames = finishingNamesFromSelection(selectedFinishings);
     const bahanSelect = document.getElementById('apparelBahan');
     const bahanOption = bahanSelect?.selectedOptions?.[0];
-    const finishingBiaya = parseFloat(finishingOption?.dataset.biaya || 0);
+    const finishingBiaya = finishingCostFromSelection(selectedFinishings);
     const harga = getHargaProduk(activeProduk, totalQty);
 
     cart.push({
@@ -1146,9 +1199,10 @@ function addApparelToCart() {
         lebar: 0,
         tinggi: 0,
         luas: 0,
-        finishing_id: finishingSelect?.value || null,
-        finishing_nama: finishingOption?.dataset.nama || '',
+        finishing_id: selectedFinishings.length === 1 ? selectedFinishings[0].id : null,
+        finishing_nama: finishingNames.join(', '),
         finishing_biaya: finishingBiaya,
+        finishing_list: finishingNames,
         bahan_id: bahanSelect?.value || null,
         bahan_nama: bahanOption?.dataset.nama || '',
         size_detail: detail.join(', '),
@@ -1278,7 +1332,13 @@ function buildCartTags(item) {
         if (item.bahan_nama) tags.push(item.bahan_nama);
     }
 
-    if (item.finishing_nama) tags.push(item.finishing_nama);
+    if (Array.isArray(item.finishing_list) && item.finishing_list.length) {
+        item.finishing_list.forEach(name => {
+            if (name) tags.push(name);
+        });
+    } else if (item.finishing_nama) {
+        tags.push(item.finishing_nama);
+    }
     if (item.catatan) tags.push(item.catatan);
 
     return tags;

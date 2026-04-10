@@ -455,6 +455,22 @@ function transactionOrderUpdateDraftDetailItem(mysqli $conn, int $transaksiId, i
     $updatedDetail['luas'] = $luas;
     $updatedDetail['size_detail'] = $sizeDetail;
     $updatedDetail['catatan'] = $catatan;
+
+    // Printing qty-fix baru menyimpan finishing sebagai total order.
+    // Saat qty draft diubah, biaya finishing perlu diskalakan ulang agar subtotal tetap konsisten.
+    if (
+        $kategori === 'printing'
+        && strtolower($satuan) !== 'm2'
+        && max(0, (int) ($detail['finishing_id'] ?? 0)) === 0
+        && max(0, (float) ($detail['finishing_biaya'] ?? 0)) > 0
+    ) {
+        $qtyLama = max(0, (float) ($detail['qty'] ?? 0));
+        if ($qtyLama > 0) {
+            $finishingPerUnit = max(0, (float) $detail['finishing_biaya']) / $qtyLama;
+            $updatedDetail['finishing_biaya'] = round($finishingPerUnit * $qty, 2);
+        }
+    }
+
     $updatedDetail['subtotal'] = transactionOrderCalculateItemSubtotal($updatedDetail);
 
     transactionOrderAdjustStockForDetailChange($conn, $detail, (float) $updatedDetail['qty']);
@@ -483,6 +499,11 @@ function transactionOrderUpdateDraftDetailItem(mysqli $conn, int $transaksiId, i
         $fields[] = 'size_detail = ?';
         $values[] = $sizeDetail;
         $types .= 's';
+    }
+    if (in_array('finishing_biaya', $detailCols, true)) {
+        $fields[] = 'finishing_biaya = ?';
+        $values[] = (float) ($updatedDetail['finishing_biaya'] ?? 0);
+        $types .= 'd';
     }
     if (in_array('catatan', $detailCols, true)) {
         $fields[] = 'catatan = ?';
